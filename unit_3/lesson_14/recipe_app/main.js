@@ -7,7 +7,9 @@ const express = require("express"),
   layouts = require("express-ejs-layouts");
 
 // mongooseをロード
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"),
+  Subscriber = require("./models/subscriber");
+
 // データベースを接続
 mongoose.connect("mongodb://localhost:27017/recipe_db", {
   useNewUrlParser: true,
@@ -18,14 +20,6 @@ const db = mongoose.connection;
 db.once("open", () => {
   console.log("Successfully connected to MongoDB using Mongoose!");
 });
-
-// mongoose.Schemaで新しいスキーマを作る
-const subscribeSchema = mongoose.Schema({
-  name: String,
-  email: String,
-  zipCode: Number,
-});
-const Subscriber = mongoose.model("Subscriber", subscribeSchema);
 
 // 新しいSubscriberを実体化する
 const subscriber1 = new Subscriber({
@@ -54,6 +48,12 @@ Subscriber.create({
   .catch((error) => {
     if (error) console.log(error);
   });
+
+const myQuery = Subscriber.findOne({
+  name: "Shin Endo",
+}).where("email", /e/);
+// クエリを実行し、エラーとデータを処理する
+myQuery.exec().then((data) => console.log(data.name));
 
 app.set("port", process.env.PORT || 3000);
 app.set("view engine", "ejs");
