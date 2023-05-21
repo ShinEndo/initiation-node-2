@@ -1,0 +1,28 @@
+<h1>User Data for <%= user.fullname %></h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <td><%= user.fullname %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= user.email %></td>
+  </tr>
+  <tr>
+    <th>Zip Code</th>
+    <td><%= user.zipCode %></td>
+  </tr>
+  <tr>
+    <th>Password</th>
+    <td><%= user.password %></td>
+  </tr>
+</table>
+
+<% if(user.subscribedAccount) { %>
+<h4 class="center">
+  This user has a
+  <a href="<%= `/subscribers/${user.subscribedAccount}` %>">
+    subscribed account </a
+  >.
+</h4>
+<% } %>
