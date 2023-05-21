@@ -39,7 +39,7 @@ app.use(homeController.logRequestPaths);
 app.use("/", router);
 router.use(
   methodOverride("_method", {
-    method: ["POST", "PUT"],
+    methods: ["POST", "GET"],
   })
 );
 
@@ -60,6 +60,22 @@ router.post(
   subscribersController.redirectView
 );
 router.post("/subscribe", subscribersController.saveSubscriber);
+router.get(
+  "/subscribers/:id",
+  subscribersController.show,
+  subscribersController.showView
+);
+router.get("/subscribers/:id/edit", subscribersController.edit);
+router.put(
+  "/subscribers/:id/update",
+  subscribersController.update,
+  subscribersController.redirectView
+);
+router.delete(
+  "/subscribers/:id/delete",
+  subscribersController.delete,
+  subscribersController.redirectView
+);
 
 router.get("/", homeController.index);
 router.get("/courses", homeController.showCourses);
@@ -76,6 +92,11 @@ router.get("/users/:id/edit", usersController.edit);
 router.put(
   "/users/:id/update",
   usersController.update,
+  usersController.redirectView
+);
+router.delete(
+  "/users/:id/delete",
+  usersController.delete,
   usersController.redirectView
 );
 

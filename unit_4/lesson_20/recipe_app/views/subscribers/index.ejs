@@ -2,12 +2,20 @@
   <% subscribers.forEach(s => { %>
   <div class="subscriber">
     <p>
-      <span class="item-label">Name:</span>
-      <%= s.name %>
+      <a href="<%=`subscribers/${s._id}`%>">
+        <span class="item-label">Name:</span>
+        <%= s.name %>
+      </a>
     </p>
     <p>
       <span class="item-label">Email:</span>
       <%= s.email %>
+    </p>
+    <p>
+      <a href="<%= `subscribers/${s._id}/edit` %>">Edit</a>
+    </p>
+    <p>
+      <a href="<%= `subscribers/${s._id}/delete?_method=DELETE` %>">Delete</a>
     </p>
   </div>
   <% }); %>
