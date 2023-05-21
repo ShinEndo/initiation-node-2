@@ -50,4 +50,8 @@ userSchema.virtual("fullname").get(function () {
   return `${this.name.first}${this.name.last}`;
 });
 
+userSchema.virtual("lengthname").get(function () {
+  return `${this.fullname.length}`;
+});
+
 module.exports = mongoose.model("User", userSchema);

@@ -63,16 +63,21 @@ Subscriber.remove({})
 let testUser;
 User.create({
   name: { first: "Jon", last: "Wexler" },
-  email: "jon@jonwexler.com",
+  email: "shinchan@jonwexler.com",
   password: "****************",
-})
-  .then((user) => {
+  zipCode: 12345,
+}).then((user) => {
+ console.log(user.fullname);
+  user.save();
+});
     testUser = user;
+    console.log(testUser);
     return Subscriber.findOne({
       email: user.email,
     });
   })
   .then((subscriber) => {
+    console.log(subscriber);
     testUser.subscribedAccount = subscriber;
     testUser.save().then((user) => console.log("user updated"));
   })
