@@ -6,6 +6,7 @@ const express = require("express"),
   homeController = require("./controllers/homeController"),
   errorController = require("./controllers/errorController"),
   subscribersController = require("./controllers/subscribersController"),
+  usersController = require("./controllers/usersController"),
   layouts = require("express-ejs-layouts");
 
 const methodOverride = require("method-override");
@@ -30,29 +31,29 @@ router.use(methodOverride("_method", { methods: ["POST", "GET"] }));
 
 router.get("/", homeController.index);
 
-// router.get("/users", usersController.index, usersController.indexView);
-// router.get("/users/new", usersController.new);
-// router.post(
-//   "/users/create",
-//   usersController.create,
-//   usersController.redirectView
-// );
-// router.get("/users/:id", usersController.show, usersController.showView);
-// router.get(
-//   "/users/:id/edit",
-//   usersController.edit,
-//   usersController.redirectView
-// );
-// router.put(
-//   "/users/:id/update",
-//   usersController.update,
-//   usersController.redirectView
-// );
-// router.delete(
-//   "/users/:id/delete",
-//   usersController.delete,
-//   usersController.redirectView
-// );
+router.get("/users", usersController.index, usersController.indexView);
+router.get("/users/new", usersController.new);
+router.post(
+  "/users/create",
+  usersController.create,
+  usersController.redirectView
+);
+router.get("/users/:id", usersController.show, usersController.showView);
+router.get(
+  "/users/:id/edit",
+  usersController.edit,
+  usersController.redirectView
+);
+router.put(
+  "/users/:id/update",
+  usersController.update,
+  usersController.redirectView
+);
+router.delete(
+  "/users/:id/delete",
+  usersController.delete,
+  usersController.redirectView
+);
 
 router.get(
   "/subscribers",

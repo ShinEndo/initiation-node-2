@@ -1,9 +1,7 @@
-const user = require("../../../lesson_19 copy/recipe_app/models/user");
-const subscriber = require("./subscriber");
-
 const mongoose = require("mongoose"),
   { Schema } = mongoose,
-  userSchema = new Shema(
+  Subscriber = require("./subscriber"),
+  userSchema = new Schema(
     {
       name: {
         first: {
@@ -46,8 +44,8 @@ const mongoose = require("mongoose"),
   );
 
 // 仮想属性の追加
-userSchema.virtual("fullname").get(function () {
-  return `${this.name.first}${this.name.last}`;
+userSchema.virtual("fullName").get(function () {
+  return `${this.name.first} ${this.name.last}`;
 });
 
 // 購読者にリンクするpre('save')フックを追加

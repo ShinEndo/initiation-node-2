@@ -1,7 +1,5 @@
 "use strict";
 
-const subscriber = require("../models/subscriber");
-
 const Subscriber = require("../models/subscriber"),
   getSubscriberParams = (body) => {
     return {
@@ -30,7 +28,7 @@ module.exports = {
     res.render("subscribers/new");
   },
   create: (req, res, next) => {
-    let subscriberParams = getSubscriberParams(req.body);
+    const subscriberParams = getSubscriberParams(req.body);
     Subscriber.create(subscriberParams)
       .then((subscriber) => {
         res.locals.redirect = "/subscribers";
@@ -43,7 +41,7 @@ module.exports = {
       });
   },
   redirectView: (req, res, next) => {
-    let redirectPath = res.locals.redirect;
+    const redirectPath = res.locals.redirect;
     if (redirectPath) res.redirect(redirectPath);
     else next();
   },
