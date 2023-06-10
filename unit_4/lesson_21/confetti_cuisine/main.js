@@ -5,6 +5,7 @@ const express = require("express"),
   router = express.Router(),
   homeController = require("./controllers/homeController"),
   errorController = require("./controllers/errorController"),
+  coursesController = require("./controllers/coursesController"),
   subscribersController = require("./controllers/subscribersController"),
   usersController = require("./controllers/usersController"),
   layouts = require("express-ejs-layouts");
@@ -87,29 +88,29 @@ router.delete(
   subscribersController.redirectView
 );
 
-// router.get("/courses", coursesController.index, coursesController.indexView);
-// router.get("/courses/new", coursesController.new);
-// router.post(
-//   "/courses/create",
-//   coursesController.create,
-//   coursesController.redirectView
-// );
-// router.get("/courses/:id", coursesController.show, coursesController.showView);
-// router.get(
-//   "/courses/:id/edit",
-//   coursesController.edit,
-//   coursesController.redirectView
-// );
-// router.put(
-//   "/courses/:id/update",
-//   coursesController.update,
-//   coursesController.redirectView
-// );
-// router.delete(
-//   "/courses/:id/delete",
-//   coursesController.delete,
-//   coursesController.redirectView
-// );
+router.get("/courses", coursesController.index, coursesController.indexView);
+router.get("/courses/new", coursesController.new);
+router.post(
+  "/courses/create",
+  coursesController.create,
+  coursesController.redirectView
+);
+router.get("/courses/:id", coursesController.show, coursesController.showView);
+router.get(
+  "/courses/:id/edit",
+  coursesController.edit,
+  coursesController.redirectView
+);
+router.put(
+  "/courses/:id/update",
+  coursesController.update,
+  coursesController.redirectView
+);
+router.delete(
+  "/courses/:id/delete",
+  coursesController.delete,
+  coursesController.redirectView
+);
 
 router.use(errorController.pageNotFoundError);
 router.use(errorController.internalServerError);
